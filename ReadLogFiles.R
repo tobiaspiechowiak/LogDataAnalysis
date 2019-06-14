@@ -35,6 +35,14 @@ for (i in 1:nrow){
   output[[2]][i,] <- linn[4 + i*dist - dist] %>% Numextract()
   
   
+  #warppower
+  output[[3]][i,] <- linn[5 + i*dist - dist] %>% Numextract()
+  
+  
+  #as_mix_bassZeroOrOne
+  
+  output[[4]][i,] <- linn[6 + i*dist - dist] %>% Numextract()
+  
 }
 
 
