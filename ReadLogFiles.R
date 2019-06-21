@@ -1,6 +1,11 @@
 
 library('dplyr')
 
+Numextract <- function(string){
+  unlist(regmatches(string,gregexpr("[[:digit:]]+\\.*[[:digit:]]*",string)))
+}
+
+
 dist <- 12
 
 linn <- readLines('AlgoBrowser3.log')
@@ -9,19 +14,20 @@ len <- length(linn)
 
 nrow <- floor(len / dist)
 
-a <- matrix(ncol = 3, nrow = nrow)
-b <- matrix(ncol = 7, nrow = nrow)
-c <- matrix(ncol = 17, nrow = nrow)
-d <- matrix(ncol = 2, nrow = nrow)
-e <- matrix(ncol = 2, nrow = nrow)
-f <- matrix(ncol = 1, nrow = nrow)
-g <- matrix(ncol = 1, nrow = nrow)
-h <- matrix(ncol = 1, nrow = nrow)
-i <- matrix(ncol = 1, nrow = nrow)
-j <- matrix(ncol = 5, nrow = nrow)
-k <- matrix(ncol = 17, nrow = nrow)
+a <- matrix(ncol = 3, nrow = nrow)  #time stamps
+b <- matrix(ncol = 7, nrow = nrow)   #environmental_classifier
+c <- matrix(ncol = 17, nrow = nrow)  #warppower
+d <- matrix(ncol = 2, nrow = nrow)  #as_mix_bassZeroOrOne
+e <- matrix(ncol = 2, nrow = nrow)  #as_zoom_amount
+f <- matrix(ncol = 1, nrow = nrow)  #as_mie_factor 
+g <- matrix(ncol = 1, nrow = nrow) #speech_detector probability 
+h <- matrix(ncol = 1, nrow = nrow) #rear_speech_detector
+i <- matrix(ncol = 1, nrow = nrow)   #noise detector probability
+j <- matrix(ncol = 5, nrow = nrow)   #afgc_dir_mix
+k <- matrix(ncol = 1, nrow = nrow)   #broadband power
+l <- matrix(ncol = 17, nrow = nrow) # pnr_env_state
 
-output <- list(a,b,c,d,e,f,g,h,i,j,k)
+output <- list(a,b,c,d,e,f,g,h,i,j,k,l)
 
 tmp <- list()
 
@@ -40,17 +46,59 @@ for (i in 1:nrow){
   
   
   #as_mix_bassZeroOrOne
-  
   output[[4]][i,] <- linn[6 + i*dist - dist] %>% Numextract()
   
-}
-
-
   
-
-Numextract <- function(string){
-  unlist(regmatches(string,gregexpr("[[:digit:]]+\\.*[[:digit:]]*",string)))
+  #as_zoom_amount
+  output[[5]][i,] <- linn[7 + i*dist - dist] %>% Numextract()
+  
+  
+  #as_mie_factor 
+  output[[6]][i,] <- linn[8 + i*dist - dist] %>% Numextract()
+  
+  
+  #speech_detector probability 
+  output[[7]][i,] <- linn[9 + i*dist - dist] %>% Numextract()
+  
+  
+  #rear_speech_detector
+  output[[8]][i,] <- linn[10 + i*dist - dist] %>% Numextract()
+  
+  
+  #noise detector probability
+  output[[9]][i,] <- linn[11 + i*dist - dist] %>% Numextract()
+  
+  
+  #afgc_dir_mix
+  output[[10]][i,] <- linn[12 + i*dist - dist] %>% Numextract()
+  
+  
+  #broadband power
+  output[[11]][i,] <- linn[13 + i*dist - dist] %>% Numextract()
+  
+  
+  #env_env_state
+  output[[12]][i,] <- linn[14 + i*dist - dist] %>% Numextract()
+  
+  
 }
+
+bla <- data.frame(output)
+
+names(bla) <- c('hour','minute','seconds',
+                'quiet','soft_speech','loud_speech','soft_noise_speech','loud_noise_speech','soft_noise','loud_noise',
+                'warp_1','warp_2','warp_3','warp_4','warp_5','warp_6','warp_7','warp_8', 'warp_9','warp_10','warp_11','warp_12','warp_13','warp_14','warp_15','warp_16','warp_17',
+                'as_mix_bassZeroOrOne_1','as_mix_bassZeroOrOne_2',
+                'as_zoom_amount_1','as_zoom_amount_2',
+                'as_mie_factor',
+                'speech_detector',
+                'rear_speech_detector',
+                'noise_detector',
+                'afgc_dir_mix_1','afgc_dir_mix_2','afgc_dir_mix_3','afgc_dir_mix_4','afgc_dir_mix_5',
+                'broadband power',
+                'pnr_env_state_1','pnr_env_state_2','pnr_env_state_3','pnr_env_state_4','pnr_env_state_5','pnr_env_state_6','pnr_env_state_7','pnr_env_state_8', 'pnr_env_state_9','pnr_env_state_10','pnr_env_state_11','pnr_env_state_12','pnr_env_state_13','pnr_env_state_14','pnr_env_state_15','pnr_env_state_16','pnr_env_state_17')
+
+
 
 
 
