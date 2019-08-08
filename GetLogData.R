@@ -3,7 +3,7 @@
 GetLogData <- function(filename){
   
   
-  dist <- 12
+  dist <- 13
   
   library('dplyr')
   
@@ -25,13 +25,15 @@ GetLogData <- function(filename){
   e <- matrix(ncol = 2, nrow = nrow)  #as_zoom_amount
   f <- matrix(ncol = 1, nrow = nrow)  #as_mie_factor 
   g <- matrix(ncol = 1, nrow = nrow) #speech_detector probability 
-  h <- matrix(ncol = 1, nrow = nrow) #rear_speech_detector
-  i <- matrix(ncol = 1, nrow = nrow)   #noise detector probability
-  j <- matrix(ncol = 5, nrow = nrow)   #afgc_dir_mix
+  h <- matrix(ncol = 3, nrow = nrow) #speech detecto states
+  i <- matrix(ncol = 1, nrow = nrow) #rear_speech_detector
+  j <- matrix(ncol = 1, nrow = nrow)   #noise detector probability
   k <- matrix(ncol = 1, nrow = nrow)   #broadband power
-  l <- matrix(ncol = 17, nrow = nrow) # pnr_env_state
+  l <- matrix(ncol = 17, nrow = nrow)   #pnr_env_state
+  m <- matrix(ncol = 17, nrow = nrow) #pnr_amb_state
   
-  output <- list(a,b,c,d,e,f,g,h,i,j,k,l)
+  
+  output <- list(a,b,c,d,e,f,g,h,i,j,k,l,m)
   
   tmp <- list()
   
@@ -65,24 +67,27 @@ GetLogData <- function(filename){
     output[[7]][i,] <- linn[9 + i*dist - dist] %>% Numextract()
     
     
-    #rear_speech_detector
+    #speech detector states
     output[[8]][i,] <- linn[10 + i*dist - dist] %>% Numextract()
     
     
-    #noise detector probability
+    #rear speech detector probability
     output[[9]][i,] <- linn[11 + i*dist - dist] %>% Numextract()
     
     
-    #afgc_dir_mix
+    #noise detector probability
     output[[10]][i,] <- linn[12 + i*dist - dist] %>% Numextract()
     
     
-    #broadband power
+    #broadband power 
     output[[11]][i,] <- linn[13 + i*dist - dist] %>% Numextract()
     
     
-    #env_env_state
+    #pnr_env_state
     output[[12]][i,] <- linn[14 + i*dist - dist] %>% Numextract()
+    
+    #pnr_amb_state
+    output[[13]][i,] <- linn[15 + i*dist - dist] %>% Numextract()
     
     
   }
@@ -95,14 +100,13 @@ GetLogData <- function(filename){
                   'as_mix_bassZeroOrOne_1','as_mix_bassZeroOrOne_2',
                   'as_zoom_amount_1','as_zoom_amount_2',
                   'as_mie_factor',
-                  'speech_detector',
-                  'rear_speech_detector',
-                  'noise_detector',
-                  'afgc_dir_mix_1','afgc_dir_mix_2','afgc_dir_mix_3','afgc_dir_mix_4','afgc_dir_mix_5',
+                  'speech_detector_probability',
+                  'speech_detector_states_1','speech_detector_states_2','speech_detector_states_3',
+                  'rear_speech_detector_probability',
+                  'noise_detector_probability',
                   'broadband power',
-                  'pnr_env_state_1','pnr_env_state_2','pnr_env_state_3','pnr_env_state_4','pnr_env_state_5','pnr_env_state_6','pnr_env_state_7','pnr_env_state_8', 'pnr_env_state_9','pnr_env_state_10','pnr_env_state_11','pnr_env_state_12','pnr_env_state_13','pnr_env_state_14','pnr_env_state_15','pnr_env_state_16','pnr_env_state_17')
-  
-  
+                  'pnr_env_state_1','pnr_env_state_2','pnr_env_state_3','pnr_env_state_4','pnr_env_state_5','pnr_env_state_6','pnr_env_state_7','pnr_env_state_8', 'pnr_env_state_9','pnr_env_state_10','pnr_env_state_11','pnr_env_state_12','pnr_env_state_13','pnr_env_state_14','pnr_env_state_15','pnr_env_state_16','pnr_env_state_17',
+                  'pnr_amb_state_1','pnr_amb_state_2','pnr_amb_state_3','pnr_amb_state_4','pnr_amb_state_5','pnr_amb_state_6','pnr_amb_state_7','pnr_amb_state_8', 'pnr_amb_state_9','pnr_amb_state_10','pnr_amb_state_11','pnr_amb_state_12','pnr_amb_state_13','pnr_amb_state_14','pnr_amb_state_15','pnr_amb_state_16','pnr_amb_state_17')
   
   
 return(bla)  
