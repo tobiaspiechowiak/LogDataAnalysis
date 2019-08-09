@@ -11,12 +11,12 @@ names.left <- c('AlgoBrowser3_left_canteen_talker_7dB_SNR.log',
                 'AlgoBrowser3_left_canteen_talker_0dB_SNR.log')
 
 
-names.right <- c('AlgoBrowser3_left_canteen_talker_7dB_SNR.log',
-                 'AlgoBrowser3_left_canteen.log',
-                 'AlgoBrowser3_left_traffic.log',
-                 'AlgoBrowser3_left_car.log',
-                 'AlgoBrowser3_left_meeting.log',
-                 'AlgoBrowser3_left_canteen_talker_0dB_SNR.log')
+names.right <- c('AlgoBrowser3_right_canteen_talker_7dB_SNR.log',
+                 'AlgoBrowser3_right_canteen.log',
+                 'AlgoBrowser3_right_traffic.log',
+                 'AlgoBrowser3_right_car.log',
+                 'AlgoBrowser3_right_meeting.log',
+                 'AlgoBrowser3_right_canteen_talker_0dB_SNR.log')
 
 
 data.left <- data.frame()
