@@ -3,7 +3,7 @@ source('GetLogData.R')
 
 library('dplyr')
 
-path <- 'data/'
+path <- '../../log_data/'
 
 names.left <- c('AlgoBrowser3_left_canteen_talker_7dB_SNR.log',
                 'AlgoBrowser3_left_canteen.log',
@@ -54,8 +54,8 @@ data.right <- data.right %>% mutate(mean_amb = rowMeans(data.right[,57:73]))
 
 #save the data 
 #left 
-write.csv(data.left,file = paste0('data/','data_left.csv'))
-write.csv(data.right,file = paste0('data/','data_right.csv'))
+write.csv(data.left,file = paste0(path,'data_left.csv'))
+write.csv(data.right,file = paste0(path,'data_right.csv'))
 
 
 
