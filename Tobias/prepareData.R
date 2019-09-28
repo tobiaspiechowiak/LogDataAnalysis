@@ -3,6 +3,8 @@ source('GetLogData.R')
 
 library('dplyr')
 
+path <- 'data/'
+
 names.left <- c('AlgoBrowser3_left_canteen_talker_7dB_SNR.log',
                 'AlgoBrowser3_left_canteen.log',
                 'AlgoBrowser3_left_traffic.log',
@@ -22,13 +24,16 @@ names.right <- c('AlgoBrowser3_right_canteen_talker_7dB_SNR.log',
 data.left <- data.frame()
 data.right <- data.frame()
 
+path.left <- paste0(path,names.left)
+path.right <- paste0(path,names.right)
+
 
 for (idx in 1:6){
   
-  a <- GetLogData(names.left[idx]) %>% mutate(class = idx)
+  a <- GetLogData(path.left[idx]) %>% mutate(class = idx)
   data.left <- rbind(data.left, a[10:nrow(a),]) #start 10 secs in 
   
-  a <- GetLogData(names.right[idx]) %>% mutate(class = idx)  
+  a <- GetLogData(path.right[idx]) %>% mutate(class = idx)  
   data.right <- rbind(data.right, a[10:nrow(a),])
   
 }
@@ -47,7 +52,10 @@ data.right <- data.right %>% mutate(mean_env = rowMeans(data.right[,40:56]))
 data.right <- data.right %>% mutate(mean_amb = rowMeans(data.right[,57:73]))
 
 
-
+#save the data 
+#left 
+write.csv(data.left,file = paste0('data/','data_left.csv'))
+write.csv(data.right,file = paste0('data/','data_right.csv'))
 
 
 
