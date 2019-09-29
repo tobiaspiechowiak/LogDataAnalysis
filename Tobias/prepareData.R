@@ -45,11 +45,17 @@ for (idx in 1:ncol(data.left)){
   
 }
 
-data.left <- data.left %>% mutate(mean_env = rowMeans(data.left[,40:56]))
-data.left <- data.left %>% mutate(mean_amb = rowMeans(data.left[,57:73]))
+data.left <- data.left %>% mutate(mean_env = rowMeans(data.left[,40:56])) 
+data.left <- data.left %>% mutate(mean_amb = rowMeans(data.left[,57:73])) 
+
+#calculate SNR left
+data.left <- data.left %>% mutate(S_to_N = 10*log10(abs(10^((mean_env - mean_amb)/10) - 1)))
 
 data.right <- data.right %>% mutate(mean_env = rowMeans(data.right[,40:56]))
 data.right <- data.right %>% mutate(mean_amb = rowMeans(data.right[,57:73]))
+
+#calculate SNR right
+data.right <- data.right %>% mutate(S_to_N = 10*log10(abs(10^((mean_env - mean_amb)/10) - 1)))
 
 
 #save the data 
