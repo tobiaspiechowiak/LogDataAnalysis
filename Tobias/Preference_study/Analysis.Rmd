@@ -34,10 +34,10 @@ names(overall.pref) <- c('Program','Preference')
 
 overall.pref$Preference <- overall.pref$Preference * 100
 
-levels(overall.pref$Program)[levels(overall.pref$Program) == 1] <- '2-mic PR / 2-mic PR'
-levels(overall.pref$Program)[levels(overall.pref$Program) == 2] <- 'MiE / MiE'
-levels(overall.pref$Program)[levels(overall.pref$Program) == 3] <- 'Monitor / Focus'
-levels(overall.pref$Program)[levels(overall.pref$Program) == 4] <- 'BBF / BBF'
+levels(overall.pref$Program)[levels(overall.pref$Program) == 1] <-  names.states[1]
+levels(overall.pref$Program)[levels(overall.pref$Program) == 2] <-  names.states[2]
+levels(overall.pref$Program)[levels(overall.pref$Program) == 3] <-  names.states[3]
+levels(overall.pref$Program)[levels(overall.pref$Program) == 4] <-  names.states[4]
 
 
 overall.pref %>% ggplot(aes(x= Program,y = Preference)) +
@@ -62,49 +62,51 @@ data.traffic <- data.raw[data.raw$Scene == 'traffic','Preference'] %>% table() %
 data.canteenWO <- data.raw[data.raw$Scene == 'canteen-','Preference'] %>% table() %>% as.data.frame() 
 data.canteenW <- data.raw[data.raw$Scene == 'canteen+','Preference'] %>% table() %>% as.data.frame() 
 
+names.states <- c('2-mic PR','MiE','Asym','BBF')
+
 names(data.car) <- c('Program','Preference')
-levels(data.car$Program)[levels(data.car$Program) == 1] <- '2-mic PR / 2-mic PR'
-levels(data.car$Program)[levels(data.car$Program) == 2] <- 'MiE / MiE'
-levels(data.car$Program)[levels(data.car$Program) == 3] <- 'Monitor / Focus'
-levels(data.car$Program)[levels(data.car$Program) == 4] <- 'BBF / BBF'
+levels(data.car$Program)[levels(data.car$Program) == 1] <- names.states[1]
+levels(data.car$Program)[levels(data.car$Program) == 2] <- names.states[2]
+levels(data.car$Program)[levels(data.car$Program) == 3] <- names.states[3]
+levels(data.car$Program)[levels(data.car$Program) == 4] <- names.states[4]
 data.car$scene <- 'car'
 
 data.car$Preference <- data.car$Preference / sum(data.car$Preference) * 100
 
 names(data.meeting) <- c('Program','Preference')
-levels(data.meeting$Program)[levels(data.meeting$Program) == 1] <- '2-mic PR / 2-mic PR'
-levels(data.meeting$Program)[levels(data.meeting$Program) == 2] <- 'MiE / MiE'
-levels(data.meeting$Program)[levels(data.meeting$Program) == 3] <- 'Monitor / Focus'
-levels(data.meeting$Program)[levels(data.meeting$Program) == 4] <- 'BBF / BBF'
+levels(data.meeting$Program)[levels(data.meeting$Program) == 1] <- names.states[1]
+levels(data.meeting$Program)[levels(data.meeting$Program) == 2] <- names.states[2]
+levels(data.meeting$Program)[levels(data.meeting$Program) == 3] <- names.states[3]
+levels(data.meeting$Program)[levels(data.meeting$Program) == 4] <- names.states[4] 
 data.meeting$scene <- 'meeting'
 
 data.meeting$Preference <- data.meeting$Preference / sum(data.meeting$Preference) * 100
 
 names(data.traffic) <- c('Program','Preference')
-levels(data.traffic$Program)[levels(data.traffic$Program) == 1] <- '2-mic PR / 2-mic PR'
-levels(data.traffic$Program)[levels(data.traffic$Program) == 2] <- 'MiE / MiE'
-levels(data.traffic$Program)[levels(data.traffic$Program) == 3] <- 'Monitor / Focus'
-levels(data.traffic$Program)[levels(data.traffic$Program) == 4] <- 'BBF / BBF'
+levels(data.traffic$Program)[levels(data.traffic$Program) == 1] <- names.states[1]
+levels(data.traffic$Program)[levels(data.traffic$Program) == 2] <-  names.states[2]
+levels(data.traffic$Program)[levels(data.traffic$Program) == 3] <-  names.states[3]
+levels(data.traffic$Program)[levels(data.traffic$Program) == 4] <-  names.states[4]
 data.traffic$scene <- 'traffic'
 
 data.traffic$Preference <- data.traffic$Preference / sum(data.traffic$Preference) * 100
 
 
 names(data.canteenWO) <- c('Program','Preference')
-levels(data.canteenWO$Program)[levels(data.canteenWO$Program) == 1] <- '2-mic PR / 2-mic PR'
-levels(data.canteenWO$Program)[levels(data.canteenWO$Program) == 2] <- 'MiE / MiE'
-levels(data.canteenWO$Program)[levels(data.canteenWO$Program) == 3] <- 'Monitor / Focus'
-levels(data.canteenWO$Program)[levels(data.canteenWO$Program) == 4] <- 'BBF / BBF'
+levels(data.canteenWO$Program)[levels(data.canteenWO$Program) == 1] <-  names.states[1]
+levels(data.canteenWO$Program)[levels(data.canteenWO$Program) == 2] <-  names.states[2]
+levels(data.canteenWO$Program)[levels(data.canteenWO$Program) == 3] <-  names.states[3]
+levels(data.canteenWO$Program)[levels(data.canteenWO$Program) == 4] <-  names.states[4]
 data.canteenWO$scene <- 'canteen w/o'
 
 data.canteenWO$Preference <- data.canteenWO$Preference / sum(data.canteenWO$Preference) * 100
 
 
 names(data.canteenW) <- c('Program','Preference')
-levels(data.canteenW$Program)[levels(data.canteenW$Program) == 1] <- '2-mic PR / 2-mic PR'
-levels(data.canteenW$Program)[levels(data.canteenW$Program) == 2] <- 'MiE / MiE'
-levels(data.canteenW$Program)[levels(data.canteenW$Program) == 3] <- 'Monitor / Focus'
-levels(data.canteenW$Program)[levels(data.canteenW$Program) == 4] <- 'BBF / BBF'
+levels(data.canteenW$Program)[levels(data.canteenW$Program) == 1] <-  names.states[1]
+levels(data.canteenW$Program)[levels(data.canteenW$Program) == 2] <-  names.states[2]
+levels(data.canteenW$Program)[levels(data.canteenW$Program) == 3] <-  names.states[3]
+levels(data.canteenW$Program)[levels(data.canteenW$Program) == 4] <-  names.states[4]
 data.canteenW$scene <- 'canteen 0dB SNR'
 
 data.canteenW$Preference <- data.canteenW$Preference / sum(data.canteenW$Preference) * 100
@@ -112,10 +114,17 @@ data.canteenW$Preference <- data.canteenW$Preference / sum(data.canteenW$Prefere
 
 data.scene.preferences <- rbind(data.car,data.meeting,data.traffic,data.canteenWO,data.canteenW)
 
+png('Preference_scenes.png',width = 1200, height = 600)
 
 data.scene.preferences %>% ggplot(aes(x = Program, y = Preference)) +
-  geom_bar(stat='identity',position = 'dodge',fill = 'steelblue',width = .8) + facet_wrap(~scene) 
+  geom_bar(stat='identity',position = 'dodge',fill = 'steelblue',width = .8) + facet_wrap(~scene) +
+  theme(axis.text=element_text(size=16,color='black'),
+        axis.title=element_text(size=16,face="bold"),
+        strip.text.x = element_text(size = 17,face='bold'))
+
+
   
+dev.off()
 
 ```
 
@@ -125,27 +134,29 @@ Preferences across all subjects:
 library('plot.matrix')
 library('dplyr')
 
-data.subjects <- matrix(ncol = 15,nrow = 5)
+Individual_preferences <- matrix(ncol = 15,nrow = 5)
 
 scene_name <- c('car','meeting','canteen+','canteen-','traffic')
-names <- c('2-mic PR / 2-mic PR','MiE / MiE','Monitor / Focus','BBF / BBF')
+names <- names.states#c('2-mic PR / 2-mic PR','MiE / MiE','Monitor / Focus','BBF / BBF')
 
 for (iSubject in 1:15){
   for (iScene in 1:5){
     
     tmp <- data.raw %>% filter(Scene == scene_name[iScene] & Subject == iSubject) 
-    data.subjects[iScene,iSubject] <- names[tmp$Preference[1]]
+    Individual_preferences[iScene,iSubject] <- names[tmp$Preference[1]]
      
   }
 }
 
-row.names(data.subjects) <- c('car','meeting','canteen 0dB SNR','canteen W/o','traffic')
+row.names(Individual_preferences) <- c('car','meeting','can 0dB SNR','can w/o','traffic')
 
-#png('Individual preferences.png',width=900,height=600)
+png('Individual preferences.png',width=1200,height=700)
 
-plot(data.subjects,col=c('purple','red','green','blue'),ylab = 'Scene',xlab = 'Subject', font.axis =18)
+par(mar=c(4.5, 4, 4 ,5.7))
+plot(Individual_preferences,col=c('purple','blue','red','#339900'),ylab = '',xlab = 'Subject',key=list(side=4, cex.axis=1.4), cex.axis=1.5) 
+  
 
-#dev.off()
+dev.off()
 
 
 ```
@@ -156,6 +167,7 @@ Now, look at the attributes relative to the preferences:
 
 library('reshape2')
 library('dplyr')
+library('gridExtra')
 
 #first reshape the shit 
 data.raw.reshape <- melt(data.raw,id=c('Subject','Algo','Scene'))
@@ -224,25 +236,60 @@ data.agg.BBF$Attribute <- as.factor(data.agg.BBF$Attribute)
 
 
 #plots
-data.agg.PR %>%  ggplot(aes(x=Algo, y=Value, fill=Attribute)) +
-  geom_bar(stat = 'identity',position = 'dodge',color='black') + 
+p1 <- data.agg.PR %>%  ggplot(aes(x=Algo, y=Value, fill=Attribute)) +
+  geom_bar(stat = 'identity',position = 'dodge',color='black',width = .8) + 
   scale_fill_manual(labels= c('Quality','Effort','Spatialization','Speech'),values=c("purple", "green",'blue','red')) +
   scale_x_discrete(labels = c("2-mic PR", "MiE", "Asym",'BBF')) +
-  labs(title = '2-mic PR preference', x = 'Algo', y = 'Score') 
+  labs(title = 'Preference: 2-mic PR', x = 'Algo', y = 'Score') +
+  theme(axis.text=element_text(size=16),
+        axis.title=element_text(size=18),
+        title = element_text(size=19),
+        legend.position = c(0.91,0.22)) +
+        ylim(c(0,9))
   
 
 
-data.agg.MiE %>%  ggplot(aes(x=Algo, y=Value, fill=Attribute)) +
-  geom_bar(stat = 'identity',position = 'dodge')
+p2 <- data.agg.MiE %>%  ggplot(aes(x=Algo, y=Value, fill=Attribute)) +
+  geom_bar(stat = 'identity',position = 'dodge',color='black',width = .8) + 
+  scale_fill_manual(labels= c('Quality','Effort','Spatialization','Speech'),values=c("purple", "green",'blue','red')) +
+  scale_x_discrete(labels = c("2-mic PR", "MiE", "Asym",'BBF')) +
+  labs(title = 'Preference: MiE', x = 'Algo', y = 'Score') +
+  theme(axis.text=element_text(size=16),
+        axis.title=element_text(size=18),
+        title = element_text(size=19),
+        legend.position = 'none')+
+        ylim(c(0,9))
 
 
-data.agg.Asym %>%  ggplot(aes(x=Algo, y=Value, fill=Attribute)) +
-  geom_bar(stat = 'identity',position = 'dodge')
+p3 <- data.agg.Asym %>%  ggplot(aes(x=Algo, y=Value, fill=Attribute))+
+  geom_bar(stat = 'identity',position = 'dodge',color='black',width = .8) + 
+  scale_fill_manual(labels= c('Quality','Effort','Spatialization','Speech'),values=c("purple", "green",'blue','red')) +
+  scale_x_discrete(labels = c("2-mic PR", "MiE", "Asym",'BBF')) +
+  labs(title = 'Preference: Asym', x = 'Algo', y = 'Score') +
+  theme(axis.text=element_text(size=16),
+        axis.title=element_text(size=18),
+        title = element_text(size=19),
+        legend.position = 'none') +
+        ylim(c(0,9))
 
 
-data.agg.BBF %>%  ggplot(aes(x=Algo, y=Value, fill=Attribute)) +
-  geom_bar(stat = 'identity',position = 'dodge')
+p4 <- data.agg.BBF %>%  ggplot(aes(x=Algo, y=Value, fill=Attribute)) +
+  geom_bar(stat = 'identity',position = 'dodge',color='black',width = .8) + 
+  scale_fill_manual(labels= c('Quality','Effort','Spatialization','Speech'),values=c("purple", "green",'blue','red')) +
+  scale_x_discrete(labels = c("2-mic PR", "MiE", "Asym",'BBF')) +
+  labs(title = 'Preference: BBF', x = 'Algo', y = 'Score') +
+  theme(axis.text=element_text(size=16),
+        axis.title=element_text(size=18),
+        title = element_text(size=19),
+        legend.position = 'none') +
+        ylim(c(0,9))
 
+
+png('Attributes_Preferences.png',width = 1200, height = 800)
+
+grid.arrange(p1,p2,p3,p4,ncol=2,nrow=2)
+
+dev.off()
 
 ```
 
